@@ -1,4 +1,4 @@
-import {component} from 'react'
+import {Component} from 'react'
 import Cookies from 'js-cokies'
 import Loader from 'react-loader-spinner'
 import {HrFire} from 'react-icons/hi'
@@ -21,7 +21,7 @@ const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
   failure: 'FAILURE',
-  inprogress: 'IN_PROGRESS',
+  inProgress: 'IN_PROGRESS',
 }
 class TreadingVideos extends Component {
   state = {
@@ -32,7 +32,7 @@ class TreadingVideos extends Component {
     this.getVideos()
   }
   getVideos = async () => {
-    this.setState({apiStatus: apiStatusConstants.inprogress}) //inProgress
+    this.setState({apiStatus: apiStatusConstants.inProgress}) 
     const jwtToken = Cookies.get('jwt_token')
     const url = `https://apis.ccbp.in/videos/trending`
     const options = {
@@ -93,9 +93,10 @@ class TreadingVideos extends Component {
         return this.renderLoadingView()
       case apiStatusConstants.failure:
         return this.renderFailureView()
-      case apiStatusConstants.inprogress:
+      case apiStatusConstants.inProgress:
         return this.renderLoadingView()
-        defaultL: return null
+        default: 
+        return null
     }
   }
   render() {
