@@ -1,17 +1,15 @@
 import ReactPlayer from 'react-player'
-
-import {AioOutLineLike, AioOutLineDisLike} from 'react-icons/ai'
+import {AiOutlineLike, AiOutlineDisLike} from 'react-icons/ai'
 import {BiListPlus} from 'react-icons/bi'
-import ThemeAndVideosContext from './context/ThemeAndVideosContext'
+import ThemeAndVideoContext from './context/ThemeAndVideoContext'
 
 import {
   VideoPlayer,
   PlayVideoTitle,
   PlayVideoStatus,
-  PlayVideoStatusContainer,
-  PlayVideoDot,
-  PlaySocialButtonsContainer,
-  PlaySocialButton,
+  PlayVideoStatusConstainer,
+  PLayVideoDot,
+  PlaySocialButtonContainer,
   SocialButton,
   ButtonText,
   HrLine,
@@ -19,12 +17,12 @@ import {
   ChannelContainer,
   ChannelInfo,
   ChannelName,
-  ChannelSubscribes,
-  ChannelDescription,
+  ChannelSubscribers,
+  ChannelDescripition,
   BtnContainer,
 } from './styledComponents'
 
-const PLayVideoView = props => {
+const PlayVideoView = props => {
   const {videoDetails, isLiked, isDisLiked, clickLiked, clickDisLiked} = props
   const onClickLike = () => {
     clickLiked()
@@ -32,81 +30,90 @@ const PLayVideoView = props => {
   const onClickDisLike = () => {
     clickDisLiked()
   }
-
   return (
-    <ThemeAndVideosContext.Consmer>
+    <ThemeAndVideoContext.Consumer>
       {value => {
         const {isDarkTheme, addVideo, savedVideos} = value
         const textColor = isDarkTheme ? '#64748b' : '#231f20'
         let isSaved
-        const index = savedVideos.findIndex(eachVideo(videoDetails))
+        const index = savedVideos.findIndex(
+          eachVideo => eachVideo.id === videoDetails.id,
+        )
+        if (index === -1) {
+          isSaved = false
+        } else {
+          isSaved = true
+        }
+        const SaveIconColor = isSaved ? '#2563eb' : 'textColor'
 
+        const onClickSave = () => {
+          addVideo(videoDetails)
+        }
         return (
           <VideoPlayer>
-            <ReactPlayer url={videoDetails.videoUrl} controls width="100" />
+            <ReactPlayer url={videoDetails.videoUrl} controls width="100%" />
             <PlayVideoTitle color={textColor}>
               {videoDetails.title}
             </PlayVideoTitle>
-            <PlayVideoStatusContainer>
+            <PlayVideoStatusConstainer>
               <PlayVideoStatus color={textColor}>
                 {videoDetails.viewCount} views
-                <PlayVideoDot>&#8226</PlayVideoDot>
+                <PLayVideoDot>&8226;</PLayVideoDot>
                 {videoDetails.publishedAt}
               </PlayVideoStatus>
-              <PlaySocialButtonsContainer>
+              <PlaySocialButtonContainer>
                 <BtnContainer>
                   <SocialButton
                     type="button"
                     color={isLiked ? '#2563eb' : '#64748b'}
                     onClick={onClickLike}
                   >
-                    <AioOutLineLike size={25} />
+                    <AiOutlineLike size={25} />
                     <ButtonText>Like</ButtonText>
                   </SocialButton>
                 </BtnContainer>
-
                 <BtnContainer>
                   <SocialButton
                     type="button"
-                    color={isDisLiked ? '#2563eb' : '#64748b'}
+                    color={isDisLiked ? '2563eb' : '#64748b'}
                     onClick={onClickDisLike}
                   >
-                    <AioOutLineDisLike size={25} />
-                    <ButtonText>Dislike</ButtonText>
+                    <AiOutlineDisLike size={25} />
+                    <ButtonText>Disliked</ButtonText>
                   </SocialButton>
                 </BtnContainer>
                 <BtnContainer>
                   <SocialButton
                     type="button"
-                    color={savedIconColor}
+                    color={SaveIconColor}
                     onClick={onClickSave}
                   >
                     <BiListPlus size={25} />
                     <ButtonText>{isSaved ? 'Saved' : 'Save'}</ButtonText>
                   </SocialButton>
                 </BtnContainer>
-              </PlaySocialButtonsContainer>
-            </PlayVideoStatusContainer>
+              </PlaySocialButtonContainer>
+            </PlayVideoStatusConstainer>
             <HrLine />
             <ChannelContainer>
               <ChannelImage
-                src={videoDetails.profileImageUrl}
+                src={videoDetails.profileImgUrl}
                 alt="channel logo"
               />
               <ChannelInfo>
                 <ChannelName color={textColor}>{videoDetails.name}</ChannelName>
-                <ChannelSubscribes color={textColor}>
-                  {videoDetails.subscribesCount}Subscribers
-                </ChannelSubscribes>
-                <ChannelDescription color={textColor}>
-                  {videoDetails.description}
-                </ChannelDescription>
+                <ChannelSubscribers color={textColor}>
+                  {videoDetails.subscriberCount}Subscribers
+                </ChannelSubscribers>
+                <ChannelDescripition color={textColor}>
+                  {videoDetails.descripition}
+                </ChannelDescripition>
               </ChannelInfo>
             </ChannelContainer>
           </VideoPlayer>
         )
       }}
-    </ThemeAndVideosContext.Consmer>
+    </ThemeAndVideoContext.Consumer>
   )
 }
-export default PLayVideoView
+export default PlayVideoView

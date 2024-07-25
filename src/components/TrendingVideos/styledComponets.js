@@ -1,43 +1,41 @@
 import styled from 'styled-components'
 
-export const TreadingContainer = styled.div`
-background-color:${props =>props.bgColor};
+export const TrendingContainer = styled.div`
+background-color:${props => props.bgColor}
 min-height:100vh;
-margin-top:60px;
+margin-top:60px:
 margin-bottom:60px;
+overflow-y:auto;
 `
-export const TreadingVideoTitle=styled.p`
-font-family:'Roboto';
-font-size:12px;
-
+export const TrendingVideoTitle = styled.div`
+display:flex;
+align-items:center;
 `
-
-export const TitleIconContainer =styled.div`
+export const TitleIconContainer = styled.div`
 width:40px;
 height:40px;
 border-radius:80px;
-margin-left:10px;
 margin-right:10px;
+margin-left:10px;
 display:flex;
 justify-content:center;
-aligin-items:center;
+align-items:center;
 `
-
-export const TreadingText =styled.h1`
+export const TrendingText = styled.h1`
 font-family:'Roboto';
-font-size:12px;
-color:${props=>props.color}
-
+font-size:25px;
+color:${props => props.color}
 `
-export const TreadingVideoList =styled.u1`
-display:flex:
-flex-direction:column;
+export const TrendingVideoList = styled.ul`
 list-style-type:none;
+display:flex;
+flex-direction:column;
 margin:0px;
+padding:0px;
 `
-export const LoaderContainer =styled.div`
+export const LoaderContainer = styled.div`
 display:flex;
 justify-content:center;
-aligin-items:center;
-min-height:80vh
+align-items:center;
+min-height:80vh;
 `

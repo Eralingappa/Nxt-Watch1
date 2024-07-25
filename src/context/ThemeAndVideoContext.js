@@ -1,12 +1,10 @@
-import React  from 'react'
-
-const ThemeAndVideoContext =React.creataCountext({
-    isDarkTheme:false,
-    savedVideos:[],
-    activeTab:'HOME',
-    toggleTheme :() =>{},
-    changeTab:()=>{},
-    addVideo:()=>{},
+import React from 'react'
+const ThemeAndVideoContext = React.createContext({
+  isDarkTheme: false,
+  savedVideos: [],
+  activeTab: 'Home',
+  toggleTheme: () => {},
+  changeTab: () => {},
+  addViideo: () => {},
 })
-
 export default ThemeAndVideoContext

@@ -1,33 +1,33 @@
-import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+import ThemeAndVideoContext from './context/ThemeAndVideoContext'
 
 import {
   ItemLink,
   GamingListItem,
-  GamingContentSection,
   GamingThumbNailImage,
+  GamingContentSection,
   GamingTitle,
-  GamingViewsAndData,
-} from './StyledComponents'
+  GamingViewsAndDate,
+} from './styledComponents'
 
-const videoCard = props => {
+const VideoCard = props => {
   const {videoDetails} = props
-  const {id, title, thumbnilUrl, videoCount} = videoDetails
+  const {id, title, thumbnailUrl, viewCount} = videoDetails
 
   return (
     <ThemeAndVideoContext.Consumer>
       {value => {
         const {isDarkTheme} = value
-        const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
+        const textcolor = isDarkTheme ? '#f9f9f9' : '#321f20'
 
         return (
-          <ItemLink>
+          <ItemLink to={`/videos/${id}`} className='link'>
             <GamingListItem>
-              <GamingThumbNailImage src={thumbnilUrl} alt="video thumbnil" />
+              <GamingThumbNailImage src={thumbnailUrl} alt='video thumbnail' />
               <GamingContentSection>
-                <GamingTitle color={textColor}>{title}</GamingTitle>
-                <GamingViewsAndData color={textColor}>
-                  {videoCount} Watching WorldWide
-                </GamingViewsAndData>
+                <GamingTitle color={textcolor}>{title}</GamingTitle>
+                <GamingViewsAndDate color={textcolor}>
+                  {viewCount} Watching WorldWide
+                </GamingViewsAndDate>
               </GamingContentSection>
             </GamingListItem>
           </ItemLink>
@@ -36,4 +36,4 @@ const videoCard = props => {
     </ThemeAndVideoContext.Consumer>
   )
 }
-export default videoCard
+export default VideoCard

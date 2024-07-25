@@ -1,19 +1,18 @@
 import {Component} from 'react'
-import Cookies from 'js-cokies'
-import Loader from 'react-loader-spinner'
-import {HrFire} from 'react-icons/hi'
+import Cookies from 'js-cookies'
+import Loader from 'react-icons-spinner'
+import {HiFire} from 'react-icons/h1'
 import Header from './Header'
 import NavigationBar from './NavigationBar'
 import ThemeAndVideoContext from './context/ThemeAndVideoContext'
 import FailureView from './FailureView'
 import VideoCard from './VideoCard'
-
 import {
-  TreadingContainer,
+  TrendingContainer,
   TitleIconContainer,
-  TreadingVideoTitle,
-  TreadingVideoList,
-  TreadingText,
+  TrendingVideoTitle,
+  TrendingVideoList,
+  TrendingText,
   LoaderContainer,
 } from './styledComponents'
 
@@ -23,16 +22,16 @@ const apiStatusConstants = {
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
 }
-class TreadingVideos extends Component {
+class TrendingVideos extends Component {
   state = {
-    treadingVideos: [],
+    trendingVideos: [],
     apiStatus: apiStatusConstants.initial,
   }
   componentDidMount() {
     this.getVideos()
   }
   getVideos = async () => {
-    this.setState({apiStatus: apiStatusConstants.inProgress}) 
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
     const url = `https://apis.ccbp.in/videos/trending`
     const options = {
@@ -55,47 +54,44 @@ class TreadingVideos extends Component {
         profileImageUrl: eachVideo.channel.profile_image_url,
       }))
       this.setState({
-        treadingVideos: updatedData,
+        trendingVideos: updatedData,
         apiStatus: apiStatusConstants.success,
       })
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
-
   renderLoadingView = () => (
-    <LoaderContainer data-testid="loader">
-      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    <LoaderContainer data-testid='loader'>
+      <Loader type='ThreeDots' color='#0b69ff' height='50' width='50' />
     </LoaderContainer>
   )
-
   renderVideosView = () => {
-    const {treadingVideos} = this.state
-
+    const {trendingVideos} = this.state
     return (
-      <TreadingVideoList>
-        {treadingVideos.map(eachVideo => (
+      <TrendingVideoList>
+        {trendingVideos.map(eachVideo => (
           <VideoCard key={eachVideo.id} videoDetails={eachVideo} />
         ))}
-      </TreadingVideoList>
+      </TrendingVideoList>
     )
   }
-
   onRetry = () => {
     this.getVideos()
   }
   renderFailureView = () => <FailureView onRetry={this.onRetry} />
 
-  renderTreadingVideos = () => {
+  renderTrendingVideos = () => {
     const {apiStatus} = this.state
+
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderLoadingView()
+        return this.renderVideosView()
       case apiStatusConstants.failure:
         return this.renderFailureView()
       case apiStatusConstants.inProgress:
         return this.renderLoadingView()
-        default: 
+      default:
         return null
     }
   }
@@ -105,25 +101,25 @@ class TreadingVideos extends Component {
         {value => {
           const {isDarkTheme, toggleTheme} = value
           const bgColor = isDarkTheme ? '#0f0f0f' : '#f9f9f9'
-          const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
+          const texColor = isDarkTheme ? '#f9f9f9' : '#231f20'
 
           return (
-            <div data-testid="trending">
+            <div data-testid='trending'>
               <Header />
               <NavigationBar />
-              <TreadingContainer
-                data-testid="trending"
-                style={{backgroundCcolor: bgColor}}
-                onClick={toggleTheme}
+              <TrendingContainer
+                data-testid='trending'
+                style={{backgroundColor: bgColor}}
+                onCLick={toggleTheme}
               >
-                <TreadingVideoTitle>
+                <TrendingVideoTitle>
                   <TitleIconContainer>
-                    <HrFire size={35} color="#ff0000" />
+                    <HiFire size={35} color='#ff0000' />
                   </TitleIconContainer>
-                  <TreadingText color={textColor}>Treading </TreadingText>
-                </TreadingVideoTitle>
-                {this.renderTreadingVideos()}
-              </TreadingContainer>
+                  <TrendingText color={texColor}>Trending</TrendingText>
+                </TrendingVideoTitle>
+                {texColor.renderTrendingVideos()}
+              </TrendingContainer>
             </div>
           )
         }}
@@ -131,5 +127,4 @@ class TreadingVideos extends Component {
     )
   }
 }
-
-export default TreadingVideos
+export default TrendingVideos

@@ -1,9 +1,8 @@
 import {Component} from 'react'
 import {AiFillHome} from 'react-icons/ai'
-import {HiFire} from 'react-icons/hi'
+import {HiFire} from 'react-icons.hi'
 import {SiYoutubegaming} from 'react-icons/si'
-import {CgPlayListdd} from 'react-icons/cg'
-
+import {CgPlayListAdd} from 'react-icons/cg'
 import ThemeAndVideoContext from './context/ThemeAndVideoContext'
 
 import {
@@ -22,24 +21,24 @@ import {
 } from './styledComponents'
 
 class NavigationBar extends Component {
-  renderTableItems = () => (
+  renderTabItems = () => (
     <ThemeAndVideoContext.Consumer>
       {value => {
-        const {isDarkTheme, ctiveTab, changeTab} = value
+        const {isDarkTheme, activeTab, changeTab} = value
         const bgColor = isDarkTheme ? '#231f20' : '#f1f5f9'
-
         const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
         const activeTabBg = isDarkTheme ? '#475569' : '#cbd5e1'
 
-        const OnClickTabHome = () => {
+        const onClickTabHome = () => {
           changeTab('Home')
         }
-        const OnClickTabTrending = () => {
+        const onClickTabTrending = () => {
           changeTab('Trending')
         }
         const onClickTabGaming = () => {
           changeTab('Gaming')
         }
+
         const onClickTabSaved = () => {
           changeTab('Saved')
         }
@@ -51,11 +50,11 @@ class NavigationBar extends Component {
                   <NavLinkContainer
                     key="home"
                     bgColor={activeTab === 'Home' ? activeTabBg : 'none'}
-                    onClick={OnClickTabHome}
+                    onClick={onClickTabHome}
                   >
                     <AiFillHome
                       size={30}
-                      color={activeTab === 'Home' ? '#ffob37' : '#909090'}
+                      color={activeTab === 'Home' ? '#ff0b37' : '#909090'}
                     />
                     <NavText color={textColor}>Home</NavText>
                   </NavLinkContainer>
@@ -64,11 +63,11 @@ class NavigationBar extends Component {
                   <NavLinkContainer
                     key="trending"
                     bgColor={activeTab === 'Trending' ? activeTabBg : 'none'}
-                    onClick={OnClickTabTrending}
+                    onClick={onClickTabTrending}
                   >
                     <HiFire
                       size={30}
-                      color={activeTabBg === 'Trending' ? '#ffob37' : '#909090'}
+                      color={activeTab === 'Trending' ? '#ff0b37' : '#909090'}
                     />
                     <NavText color={textColor}>Trending</NavText>
                   </NavLinkContainer>
@@ -81,7 +80,7 @@ class NavigationBar extends Component {
                   >
                     <SiYoutubegaming
                       size={30}
-                      color={activeTab === 'Gaming' ? '#ffob37' : '#909090'}
+                      color={activeTab === 'Gaming' ? '#ff0b37' : '#909090'}
                     />
                     <NavText color={textColor}>Gaming</NavText>
                   </NavLinkContainer>
@@ -92,15 +91,15 @@ class NavigationBar extends Component {
                     bgColor={activeTab === 'Saved' ? activeTabBg : 'none'}
                     onClick={onClickTabSaved}
                   >
-                    <CgPlayListdd
+                    <CgPlayListAdd
                       size={30}
-                      color={activeTab === 'Saved' ? '#ffob37' : '#909090'}
+                      color={activeTab === 'Saved' ? '#ff0b37' : '909090'}
                     />
                   </NavLinkContainer>
                 </NavLink>
               </NavOptions>
               <ContactInfo>
-                <ContactHeading color={textColor}> CONTACT US</ContactHeading>
+                <ContactHeading color={textColor}>CONTACT US</ContactHeading>
                 <ContactIcons>
                   <ContactImage
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
@@ -124,29 +123,29 @@ class NavigationBar extends Component {
               <NavLink to="/">
                 <AiFillHome
                   size={30}
-                  onClick={OnClickTabHome}
-                  color={activeTab === 'Home' ? '#ffob37' : '#909090'}
+                  onClick={onClickTabHome}
+                  color={activeTab === 'Home' ? '#ff0b37' : '#909090'}
                 />
               </NavLink>
-              <NavLink to="/trending">
+              <NavLink to="trending">
                 <HiFire
                   size={30}
-                  onClick={OnClickTabTrending}
-                  color={activeTab === 'Trending' ? '#ffob37' : '#909090'}
+                  onClick={onClickTabTrending}
+                  color={activeTab === 'Trending' ? '#ff0b37' : '#909090'}
                 />
               </NavLink>
               <NavLink to="/gaming">
                 <SiYoutubegaming
                   size={30}
                   onClick={onClickTabGaming}
-                  color={activeTab === 'Gaming' ? '#ffob37' : '#909090'}
+                  color={activeTab === 'Gaming' ? '#ff0b37' : '#909090'}
                 />
               </NavLink>
-              <NavLink to="/saved-videos">
-                <CgPlayListdd
+              <NavLink to="saved-videos">
+                <CgPlayListAdd
                   size={30}
                   onClick={onClickTabSaved}
-                  color={activeTab === 'Saved' ? '#ffob37' : '#909090'}
+                  color={activeTab === 'Saved' ? '#ff0b37' : '#909090'}
                 />
               </NavLink>
             </NavigationSmallContainer>
@@ -156,7 +155,7 @@ class NavigationBar extends Component {
     </ThemeAndVideoContext.Consumer>
   )
   render() {
-    return <> {this.renderTableItems()}</>
+    return <>{this.renderTabItems()}</>
   }
 }
 export default NavigationBar

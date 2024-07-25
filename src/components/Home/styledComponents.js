@@ -1,18 +1,21 @@
 import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
-
+background-color:${props => props.bgColor};
 min-height:100vh;
 margin-top:60px;
+margin-bottom:60px;
 overflow-y:auto;
 `
 export const BannerContainer = styled.div`
-background-image:url('https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png');
+background-image:url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
 width:100%;
+background-size:cover;
 height:200px;
-
+display:${props => props.display}
+justify-content:space-between;
+padding:20px;
 `
-
 export const BannerLeftPart = styled.div`
 width:50%;
 
@@ -20,49 +23,58 @@ width:50%;
 export const BannerRightPart = styled.div`
 display:flex;
 justify-content:flex-end;
-
 `
 export const BannerImage = styled.img`
 width:80px;
 height:30px;
-
 `
 export const BannerButton = styled.button`
+padding-right:10px;
 padding-left:10px;
-background-color:#4f46e5;
-border-radius:3px;
-color:#ffffff;
+padding-top:5px;
+padding-bottom:5px;
+border:1px solid #000000;
+color:#000000;
+background:none;
 `
 export const BannerText = styled.p`
-font-family:"Roboto";
-font-size:12px;
+font-family:'Roboto';
 color:#000000;
-
+font-size:15px;
 `
-export const BannerCloseButton = button`
+export const BannerCloseButton = styled.button`
 border:none;
 background:none;
 height:25px;
+
 `
 export const SearchContainer = styled.div`
 display:flex;
 border:1px solid #909090;
 border-radius:3px;
-
+margin:20px;
+width:60%;
+height:40px;
 `
-export const SearchInputContainer = styled.div`
+export const SearchIconContainer = styled.div`
 display:flex;
+background-color:#909090;
 justify-content:center;
-aligin-items:center;
+align-items:center;
+width:70px;
 
 `
 export const SearchInput = styled.input`
-
+background:none;
 width:100%;
-padding:4px;
+outline:none;
+padding:5px;
+color:${props => props.color}
+font-family:'Roboto';
 `
 export const LoaderContainer = styled.div`
 display:flex;
+flex-direction:column;
 justify-content:center;
-aligin-items:center;
+align-items:center;
 `
