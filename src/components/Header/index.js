@@ -38,36 +38,36 @@ const Header = props => (
 
       return (
         <NavbarHeader bgColor={bgColor}>
-          <LogoLink to="/">
+          <LogoLink to='/'>
             <HeaderLogo
               src={
                 isDarkTheme
                   ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
                   : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
               }
-              alt="website logo"
+              alt='website logo'
             />
           </LogoLink>
           <ActionContainer>
             <ThemeButton
-              type="button"
-              data-testid="theme"
+              type='button'
+              data-testid='theme'
               onClick={onChangeTheme}
             >
               {isDarkTheme ? (
-                <BsBrightenessHight color="#ffffff" size={25} />
+                <BsBrightenessHight color='#ffffff' size={25} />
               ) : (
                 <BsMoon size={25} />
               )}
             </ThemeButton>
             <ProfileImage
-              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
-              alt="profile"
+              src='https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png'
+              alt='profile'
             />
             <Popup
               modal
               trigger={
-                <LogoutButton type="button" bgColor={bgColor} color={color}>
+                <LogoutButton type='button' bgColor={bgColor} color={color}>
                   Logout
                 </LogoutButton>
               }
@@ -77,13 +77,13 @@ const Header = props => (
                   <ModalDesc>Are you sure, want to logout?</ModalDesc>
                   <ButtonsContainer>
                     <CloseButton
-                      type="button"
-                      data-testid="CloseButton"
+                      type='button'
+                      data-testid='CloseButton'
                       onClick={onClickLogout}
                     >
                       Cancel
                     </CloseButton>
-                    <ConfirmButton type="button" onClick={onClickLogout}>
+                    <ConfirmButton type='button' onClick={onClickLogout}>
                       Confirm
                     </ConfirmButton>
                   </ButtonsContainer>
@@ -93,24 +93,24 @@ const Header = props => (
             <Popup
               modal
               trigger={
-                <LoguotIconButton type="button">
+                <LoguotIconButton type='button'>
                   <FiLogOut size={25} color={color} />
                 </LoguotIconButton>
               }
-              className="popup-content"
+              className='popup-content'
             >
               {close => (
                 <ModalContainer>
                   <ModalDesc> Are you sure, you want to logout?</ModalDesc>
                   <ButtonsContainer>
                     <CloseButton
-                      type="button"
-                      data-testid="CloseButton"
+                      type='button'
+                      data-testid='CloseButton'
                       onClick={() => close()}
                     >
                       Cancel
                     </CloseButton>
-                    <ConfirmButton type="button" onClick={onClickLogout}>
+                    <ConfirmButton type='button' onClick={onClickLogout}>
                       Confirm
                     </ConfirmButton>
                   </ButtonsContainer>
